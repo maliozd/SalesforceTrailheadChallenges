@@ -1,0 +1,17 @@
+// SELECT Address__c, Picture__c, Broker__c.Name FROM Property__c
+//didn't understand relationship 'Broker__c' in field path. If you are attempting to use a custom relationship, be sure to append the '__r' after the custom relationship name. Please reference your WSDL or the describe call for the appropriate names.
+//03:02:03.510 sfdx force:data:soql:query --query SELECT Address__c, Picture__c, Broker__c.Name FROM Property__c ended with exit code 
+
+
+
+//Use the Custom Relationship Name in the Query
+
+//To specify the Broker__c related object (not the Broker__c field), we change __c to __r (underscore-underscore-r). Broker__r is the custom relationship name. It indicates that we want to traverse the relationship from Property__c to the Broker__c object. This portion of the query says, “Get the Name field from the related Broker__c custom object.” Let’s update our query.
+//SELECT Address__c, Picture__c, Broker__r.Name FROM Property__c
+
+
+//Create a Parent-to-Child Query
+//SELECT Name, (SELECT Address__c, Price__c FROM Properties__r) FROM Broker__c
+
+//SELECT Address__c, Picture__c, Broker__c FROM Property__c
+//SELECT Address__c, Picture__c, Broker__c.Name FROM Property__c
